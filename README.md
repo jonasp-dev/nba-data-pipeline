@@ -22,9 +22,9 @@ The pipeline is built using a **microservice architecture** that includes the fo
 │ 
 ├── docker-compose.yml # Docker Compose configuration file 
 ├── services │ 
-    ├── worker-service/ # Service for processing data │ 
-    ├── postgres/ # PostgreSQL container │ 
-└── rabbitmq/ # RabbitMQ container 
+    ├── worker-service/ # Service for processing data 
+    ├── postgres/ # PostgreSQL container  
+    ├── rabbitmq/ # RabbitMQ container 
 └── README.md # Project documentation
 ```
 
