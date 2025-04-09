@@ -17,6 +17,7 @@ The pipeline is built using a **microservice architecture** that includes the fo
 - **Docker Compose**: Manages the orchestration of all services.
 
 ## Project Structure
+``` plaintext
 /nba-data-pipeline 
 │ 
 ├── docker-compose.yml # Docker Compose configuration file 
@@ -25,6 +26,7 @@ The pipeline is built using a **microservice architecture** that includes the fo
     ├── postgres/ # PostgreSQL container │ 
 └── rabbitmq/ # RabbitMQ container 
 └── README.md # Project documentation
+```
 
 Before running the pipeline, make sure you have the following installed:
 
