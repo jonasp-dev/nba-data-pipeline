@@ -10,7 +10,27 @@ services:
       RABBITMQ_DEFAULT_PASS: password
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
-
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5435:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: nba_data
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  ingestor:
+    build: ./services/ingestor
+    volumes:
+      - logs:/app/logs
+    depends_on:
+      - postgres
+      - rabbitmq
 volumes:
   rabbitmq_data:
     driver: local
+  postgres_data:
+    driver: local
+  logs:
+    external: true
