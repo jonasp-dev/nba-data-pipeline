@@ -18,7 +18,7 @@ def is_processed(key):
     return cursor.fetchone() is not None
 
 def mark_as_processed(key, bucket, etag):
-    print(f"Marking {key} as processed")
+    logging.info(f"Marking {key} as processed")
     cursor.execute(
         "INSERT INTO processed_files (s3_key, s3_bucket, s3_etag, status) VALUES (%s, %s, %s, %s)",
         (key, bucket, etag, 'queued')
@@ -38,7 +38,6 @@ def ingest():
             }
             if not is_processed(key):
                 logging.info(f"File {key} not processed, ingesting...")
-                print(f"Ingesting new file: {key}")
                 channel.basic_publish(
                     exchange='',
                     routing_key='nba-json-tasks',
@@ -46,7 +45,6 @@ def ingest():
                 )
                 mark_as_processed(key, S3_BUCKET, etag)
             else:
-                print(f"File {key} already processed, skipping.")
                 logging.info(f"File {key} already processed, skipping.")
 
     db_conn.close()
